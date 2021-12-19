@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 223011365366600892}
   - component: {fileID: 8161419935583128363}
   - component: {fileID: 1573830539293572837}
+  - component: {fileID: 563636610114649297}
   m_Layer: 0
   m_Name: Symbol
   m_TagString: Untagged
@@ -97,3 +98,16 @@ MonoBehaviour:
   Pool: {fileID: 0}
   enabledAutoReturnToPool: 0
   time: 0
+--- !u!114 &563636610114649297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200660480729511414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64480d059994fca4fb8535e7606f9c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8161419935583128363}

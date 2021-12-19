@@ -15,10 +15,10 @@ public class Spring : MonoBehaviour
 
     y'' = − (k⁄m) y − (b⁄m) y'
     **/
-    public float y;
-    public bool active;
     [SerializeField]
-    private float v;
+    private float y;
+    public bool active;
+    public float v;
     [SerializeField]
     private float mass;
     [SerializeField]
@@ -43,8 +43,13 @@ public class Spring : MonoBehaviour
         if (active)
         {
             v += GetAccelration(y, stifness, mass, damping, v);
-            y += v;
-            transform.localPosition = Vector3.up * (y + offset);
+            UpdateY(y + v);
         }
+    }
+
+    public void UpdateY(float Y)
+    {
+        y = Y;
+        transform.localPosition = Vector3.up * (y + offset);
     }
 }

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678f526b7a13134f9b33420f8ba8aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spin: 0
+  reelState: 0
   topSymbolLevel: 2
   bottomSymbolLevel: 2
   symbolHeight: 5.12
@@ -114,7 +114,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbolPool: {fileID: 3718563054236291879}
-  speed: 1
+  spinningSpeed: 1
+  initialSpringSpeed: 1
+  sprites:
+  - {fileID: 21300000, guid: eb8f21008e4f77844be57fac33715730, type: 3}
+  - {fileID: 21300000, guid: 4b8d0b6c79b72014d9ad346f781df23b, type: 3}
+  - {fileID: 21300000, guid: 4f2a7b5450637234388c0c8810870549, type: 3}
+  - {fileID: 21300000, guid: d7f9386622862f34a9ab5091ef383a61, type: 3}
+  - {fileID: 21300000, guid: 4c77af5628feeaa4f90f8b444f06aeae, type: 3}
+  - {fileID: 21300000, guid: 49f31ca5bf238c0429f918545b3d096a, type: 3}
+  - {fileID: 21300000, guid: b6eec972257cce94992b70320022ffa7, type: 3}
+  - {fileID: 21300000, guid: 7ff1a7e03f756844ba88689b70cfdb73, type: 3}
 --- !u!1 &5501392816565044235
 GameObject:
   m_ObjectHideFlags: 0

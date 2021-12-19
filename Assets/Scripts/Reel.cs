@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Reel : MonoBehaviour
 {
+    private enum ReelState
+    {
+        Stopped,
+        Stopping,
+        Spinning
+    }
     private SlotMachine slotMachine;
     private Spring spring;
     [SerializeField]
-    private bool spin;
+    private ReelState reelState;
+    // [SerializeField]
+    // private bool spin;
     [SerializeField]
     private int topSymbolLevel;
     [SerializeField]
@@ -15,16 +23,16 @@ public class Reel : MonoBehaviour
     [SerializeField]
     private float symbolHeight;
     private int totalSymbols;
-    public List<Transform> symbols;
+    public List<Symbol> symbols;
     private float speed
     {
         get
         {
-            return slotMachine.speed;
+            return slotMachine.spinningSpeed;
         }
     }
 
-    private Transform centerSymbol
+    private Symbol centerSymbol
     {
         get
         {
@@ -34,19 +42,19 @@ public class Reel : MonoBehaviour
 
     private void Awake()
     {
+        reelState = ReelState.Stopped;
         totalSymbols = topSymbolLevel + bottomSymbolLevel + 1;
-        // symbols = new List<Transform>(GetComponentsInChildren<Transform>());
         slotMachine = GetComponentInParent<SlotMachine>();
         spring = GetComponent<Spring>();
 
-        symbols = new List<Transform>();
+        symbols = new List<Symbol>();
         for (int i = 0; i < totalSymbols; i++)
         {
             GetFromPool(i, true);
         }
     }
 
-    private void ReturnToPool(Transform symbol)
+    private void ReturnToPool(Symbol symbol)
     {
         symbol.GetComponent<PooledGameObject>().ReturnToPool();
         symbols.RemoveAt(totalSymbols - 1);
@@ -59,54 +67,67 @@ public class Reel : MonoBehaviour
 
     private void GetFromPool(int rowIndex = 0, bool absolutePosition = false)
     {
-        Transform symbol = slotMachine.symbolPool.GetObject().transform;
-        symbol.SetParent(transform);
+        Transform trSymbol = slotMachine.symbolPool.GetObject().transform;
+        trSymbol.SetParent(transform);
         if (absolutePosition)
         {
-            symbol.localPosition = Vector3.up * GetSymbolOriginPosY(rowIndex);
+            trSymbol.localPosition = Vector3.up * GetSymbolOriginPosY(rowIndex);
         }
         else
         {
-            symbol.localPosition = symbols[0].localPosition + Vector3.up * symbolHeight;
+            trSymbol.localPosition = symbols[0].transform.localPosition + Vector3.up * symbolHeight;
         }
+        Symbol symbol = trSymbol.GetComponent<Symbol>();
         symbols.Insert(rowIndex, symbol);
+        symbol.Init(slotMachine, Random.Range(0, slotMachine.SymbolTypeCount));
     }
 
     private void FixedUpdate()
     {
-        if (!spin)
+        if (reelState < ReelState.Stopping)
             return;
-
 
         for (int i = 0; i < totalSymbols; i++)
         {
-            symbols[i].position += Vector3.down * speed;
+            symbols[i].transform.position += Vector3.down * speed;
 
-            if (symbols[i].localPosition.y < -symbolHeight * bottomSymbolLevel)
+            if (symbols[i].transform.localPosition.y < -symbolHeight * bottomSymbolLevel)
             {
                 ReturnToPool(symbols[i]);
 
                 GetFromPool(0);
             }
+
+            if (reelState == ReelState.Stopping)
+            {
+                if (centerSymbol.transform.localPosition.y <= 0)
+                {
+                    BeingStopped();
+                }
+            }
+        }
+    }
+
+    private void BeingStopped()
+    {
+        reelState = ReelState.Stopped;
+        spring.v = -speed;
+        spring.active = true;
+        
+        for (int i = 0; i < totalSymbols; i++)
+        {
+            symbols[i].transform.localPosition = Vector3.up * GetSymbolOriginPosY(i);
         }
     }
 
     public void Stop()
     {
-        spin = false;
-
-        spring.y = centerSymbol.localPosition.y;
-        spring.active = true;
-
-        for (int i = 0; i < totalSymbols; i++)
-        {
-            symbols[i].localPosition = Vector3.up * GetSymbolOriginPosY(i);
-        }
+        reelState = ReelState.Stopping;
     }
 
     public void Spin()
     {
-        spin = true;
+        reelState = ReelState.Spinning;
         spring.active = false;
     }
 }

@@ -6,9 +6,18 @@ using Sirenix.OdinInspector;
 public class SlotMachine : MonoBehaviour
 {
     public GameObjectPool symbolPool;
-    public float speed;
+    public float spinningSpeed;
 
     private Reel[] reels;
+    public Sprite[] sprites;
+
+    public int SymbolTypeCount
+    {
+        get
+        {
+            return sprites.Length;
+        }
+    }
 
     private void Awake()
     {
