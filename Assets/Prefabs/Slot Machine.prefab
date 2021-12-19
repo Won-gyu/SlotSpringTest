@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &21487789740283010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8706860519826680897}
+  - component: {fileID: 7760535645005832637}
+  - component: {fileID: 901705876672328450}
+  m_Layer: 0
+  m_Name: Reel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8706860519826680897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21487789740283010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1184001713387983880}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7760535645005832637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21487789740283010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b678f526b7a13134f9b33420f8ba8aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelState: 0
+  topSymbolLevel: 2
+  bottomSymbolLevel: 2
+  symbolHeight: 2.56
+  symbols: []
+--- !u!114 &901705876672328450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21487789740283010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ab99a468f98f141979f3afd7b73065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  y: 0
+  active: 0
+  v: 0
+  mass: 1
+  stifness: 1
+  damping: 0.5
+  offset: 0
 --- !u!1 &711392574556785771
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +94,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711392574556785771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1184001713387983880}
@@ -47,7 +115,7 @@ MonoBehaviour:
   reelState: 0
   topSymbolLevel: 2
   bottomSymbolLevel: 2
-  symbolHeight: 5.12
+  symbolHeight: 2.56
   symbols: []
 --- !u!114 &9032179881181407431
 MonoBehaviour:
@@ -115,7 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbolPool: {fileID: 3718563054236291879}
   spinningSpeed: 1
-  initialSpringSpeed: 1
   sprites:
   - {fileID: 21300000, guid: eb8f21008e4f77844be57fac33715730, type: 3}
   - {fileID: 21300000, guid: 4b8d0b6c79b72014d9ad346f781df23b, type: 3}
@@ -153,9 +220,79 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7321124323056747239}
+  - {fileID: 8706860519826680897}
+  - {fileID: 4228400537957210134}
   m_Father: {fileID: 2531957264072092530}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6490033738485391418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4228400537957210134}
+  - component: {fileID: 3610220184864725864}
+  - component: {fileID: 1690884132369912568}
+  m_Layer: 0
+  m_Name: Reel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4228400537957210134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490033738485391418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1184001713387983880}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3610220184864725864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490033738485391418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b678f526b7a13134f9b33420f8ba8aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelState: 0
+  topSymbolLevel: 2
+  bottomSymbolLevel: 2
+  symbolHeight: 2.56
+  symbols: []
+--- !u!114 &1690884132369912568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490033738485391418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ab99a468f98f141979f3afd7b73065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  y: 0
+  active: 0
+  v: 0
+  mass: 1
+  stifness: 1
+  damping: 0.5
+  offset: 0
 --- !u!1 &7437775862297383890
 GameObject:
   m_ObjectHideFlags: 0

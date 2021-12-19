@@ -50,6 +50,6 @@ public class Spring : MonoBehaviour
     public void UpdateY(float Y)
     {
         y = Y;
-        transform.localPosition = Vector3.up * (y + offset);
+        transform.localPosition = new Vector3(transform.localPosition.x, y + offset, transform.localPosition.z);
     }
 }

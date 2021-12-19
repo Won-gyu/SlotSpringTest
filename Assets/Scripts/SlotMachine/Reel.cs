@@ -14,8 +14,6 @@ public class Reel : MonoBehaviour
     private Spring spring;
     [SerializeField]
     private ReelState reelState;
-    // [SerializeField]
-    // private bool spin;
     [SerializeField]
     private int topSymbolLevel;
     [SerializeField]
@@ -32,7 +30,7 @@ public class Reel : MonoBehaviour
         }
     }
 
-    private Symbol centerSymbol
+    public Symbol centerSymbol
     {
         get
         {
@@ -116,7 +114,7 @@ public class Reel : MonoBehaviour
         
         for (int i = 0; i < totalSymbols; i++)
         {
-            symbols[i].transform.localPosition = Vector3.up * GetSymbolOriginPosY(i);
+            symbols[i].transform.localPosition = new Vector3(symbols[i].transform.localPosition.x, GetSymbolOriginPosY(i), symbols[i].transform.localPosition.z);
         }
     }
 
