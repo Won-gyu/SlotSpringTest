@@ -95,13 +95,14 @@ public class Reel : MonoBehaviour
 
                 GetFromPool(0);
             }
+        }
 
-            if (reelState == ReelState.Stopping)
+        // TODO: should fix it?
+        if (reelState == ReelState.Stopping)
+        {
+            if (centerSymbol.transform.localPosition.y <= 0)
             {
-                if (centerSymbol.transform.localPosition.y <= 0)
-                {
-                    BeingStopped();
-                }
+                BeingStopped();
             }
         }
     }
